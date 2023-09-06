@@ -8,11 +8,13 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1 // inversion de l ordre de tri (>)
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1 // tri par ordre chronologique (>)
   );
   const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length -1 ? index + 1 : 0), // prise en compte de l index 0 sur .length (-1)
+    setTimeout(() => {
+        // console.log(byDateDesc, data);
+        if (byDateDesc && byDateDesc.length > 0) // ajout d'une condition de verif byDateDesc defini et contiens + d'un élément (undefined)
+        {setIndex(index < byDateDesc.length -1 ? index + 1 : 0);}}, // prise en compte de l index 0 sur .length (-1) pour suppression de slide vide
       5000
     );
   };
@@ -46,7 +48,8 @@ const Slider = () => {
                   key={`radio: ${radioIdx + 1}`} // création d'une clé unique
                   type="radio"
                   name="radio-button"
-                  checked={index === radioIdx} // checked avec l index des slides
+                  checked={index === radioIdx} // checked avec l index des slides (mise en fonctionnement du radio)
+                  readOnly
                 />
               ))}
             </div>
