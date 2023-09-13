@@ -18,6 +18,10 @@ const EventList = () => {
       ? data?.events
       : data?.events) || []
   ).filter((event, index) => {
+    // filtre les modales si type est defini et s il ne correspond pas à (type)
+    if (type && event.type !== type) {
+      return false
+    }
     if (
       (currentPage - 1) * PER_PAGE <= index &&
       PER_PAGE * currentPage > index
@@ -26,9 +30,13 @@ const EventList = () => {
     }
     return false;
   });
+  // console log pour traquer le type et le data.event
+  // console.log("type:", type, "data.events:", data?.events, "filteredEvents:", filteredEvents)
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
+    // console log pour traquer evtType
+    // console.log("evtType:", evtType)
   };
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
