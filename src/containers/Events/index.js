@@ -14,9 +14,7 @@ const EventList = () => {
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const filteredEvents = (
-    (!type
-      ? data?.events
-      : data?.events) || []
+    (data?.events) || []
   ).filter((event) => {
     // filtrage: garde la modale si type n'est pas défini ou si event.type correspond au type défini
     if (!type || event.type === type) {
