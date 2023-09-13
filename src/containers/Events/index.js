@@ -17,11 +17,13 @@ const EventList = () => {
     (!type
       ? data?.events
       : data?.events) || []
-  ).filter((event, index) => {
-    // filtre les modales si type est defini et s il ne correspond pas à (type)
-    if (type && event.type !== type) {
-      return false
+  ).filter((event) => {
+    // filtrage: garde la modale si type n'est pas défini ou si event.type correspond au type défini
+    if (!type || event.type === type) {
+      return true
     }
+    return false;
+  }).filter((_, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
       PER_PAGE * currentPage > index
