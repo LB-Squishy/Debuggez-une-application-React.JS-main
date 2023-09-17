@@ -29,7 +29,8 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     if (data) return;
     getData();
-  });
+  }, [data]);
+  // ajout d un tableau de dependance a l appel de data
   
   return (
     <DataContext.Provider
