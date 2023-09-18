@@ -14,12 +14,9 @@ const Slider = () => {
   
   const nextCard = () => {  
     // console.log(byDateDesc, data);
-    // ajout d'une condition de verif byDateDesc defini et contiens + d'un élément (undefined)
-    if (byDateDesc?.length > 0) {
-      const newIndex = index < byDateDesc.length -1 ? index + 1 : 0; // mise a jour des index avec prise en compte de l index 0 sur .length (-1) pour suppression de slide vide
-      setIndex(newIndex);
-      setIndexRadio(newIndex);
-    }; 
+    const newIndex = index < byDateDesc.length -1 ? index + 1 : 0; // mise a jour des index avec prise en compte de l index 0 sur .length (-1) pour suppression de slide vide
+    setIndex(newIndex);
+    setIndexRadio(newIndex);
   };
 
   // mise en place d'un useEffect pour attente de rendu fini pour declanchement avec dependances

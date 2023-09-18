@@ -8,6 +8,7 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 900)
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
+  const formReset = () => {document.getElementById("contactForm").reset();}
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
@@ -17,6 +18,7 @@ const Form = ({ onSuccess, onError }) => {
         await mockContactApi();
         setSending(false);
         onSuccess(); // ajout pour declanchement de la modale
+        formReset()
       } catch (err) {
         setSending(false);
         onError(err);
@@ -25,7 +27,7 @@ const Form = ({ onSuccess, onError }) => {
     [onSuccess, onError]
   );
   return (
-    <form onSubmit={sendContact}>
+    <form id="contactForm" onSubmit={sendContact}>
       <div className="row">
         <div className="col">
           <Field placeholder="" label="Nom" />
