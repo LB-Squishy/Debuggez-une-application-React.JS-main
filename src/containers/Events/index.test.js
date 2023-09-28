@@ -50,7 +50,7 @@ describe("When Events is created", () => {
   describe("and an error occured", () => {
     it("an error message is displayed", async () => {
       // simule le rejet avec un retour d erreur pour controler le message d'erreur renvoyé
-      api.loadData = jest.fn().mockRejectedValue(new Error);
+      api.loadData = jest.fn().mockRejectedValue(new Error("An error occured"));
       render(
         <DataProvider>
           <Events />
